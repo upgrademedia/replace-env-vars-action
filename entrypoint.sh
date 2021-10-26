@@ -8,8 +8,8 @@ if [ -z $FILENAME ]; then
   exit 1
 fi
 
-while IFS='=' read -r -a var; do
-  echo "Setting ${var[0]} to ${var[1]} "
+while IFS='=' read -r var1 var2; do
+  echo "Setting ${var1} to ${var2} "
   echo ${var[1]} | wc -l
-  sed -i "s|__${var[0]}__|${var[1]}|g" $FILENAME
+  sed -i "s|__${var1}__|${var2}|g" $FILENAME
 done < <(printenv)
